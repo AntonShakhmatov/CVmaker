@@ -2,6 +2,9 @@
 import type MenuVue from '@/menu/Menu.vue'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const route = useRoute()
 const data = ref(null)
@@ -31,11 +34,20 @@ onMounted(async () => {
     loading.value = false
   }
 })
+
+const handleSubmit = async () => {
+  await router.push({
+    path: '/buildcv',
+    query: {
+      email: route.query.email,
+    },
+  })
+}
 </script>
 
 <template>
   <section class="min-h-screen bg-gray-100 py-10">
-    <div v-if="loading">Загрузка...</div>
+    <div v-if="loading">Loading...</div>
     <div v-else-if="error">{{ error }}</div>
 
     <div v-else-if="data">
@@ -118,7 +130,14 @@ onMounted(async () => {
           {{ data.cv.links.label }}
         </a>
       </section>
-
+    <form @submit.prevent="handleSubmit">
+      <button 
+      type="submit"
+      class="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm
+      font-semibold text-white transition hover:bg-blue-700
+      focus:outline-none focus:ring-2 focus:ring-blue-300"
+      >Submit</button>
+    </form>
     </div>
     </div>
   </section>

@@ -82,7 +82,14 @@ CREATE TABLE responsibilities (
 
 CREATE TABLE technologies (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  technologies_name VARCHAR(100) UNIQUE NOT NULL
+  experience_id INT NOT NULL,
+  technologies_name VARCHAR(100) NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_technologies_experience
+    FOREIGN KEY (experience_id) REFERENCES experience(id)
+    ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE project_technologies (

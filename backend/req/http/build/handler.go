@@ -141,7 +141,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// if form.Technologies != nil {
-	technologyID, err := technologies.InsertTechnologiesTable(*form.Technologies)
+	technologyID, err := technologies.InsertTechnologiesTable(experienceID, *form.Technologies)
 	if err != nil {
 		log.Println("db error:", err)
 		http.Error(w, "db error", http.StatusInternalServerError)

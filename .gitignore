@@ -1,4 +1,3 @@
 /backend/uploads/
-/backend/newWPS/
 .env
 go.sum

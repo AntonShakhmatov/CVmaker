@@ -3,12 +3,18 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"backend/internal/db"
 	"backend/req/http/router"
 )
 
 func main() {
+	apiKey := os.Getenv("GEMINI_API_KEY")
+	if apiKey == "" {
+		panic("GEMINI_API_KEY is empty")
+	}
+
 	db.NewMySQL()
 
 	mux := http.NewServeMux()

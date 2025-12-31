@@ -9,6 +9,7 @@ import Technologies from '@/forms/Technologies.vue'
 import Links from '@/forms/Links.vue'
 import Language from '@/forms/Language.vue'
 import Success from '@/success/Success.vue'
+import BuildCV from '@/success/BuildCV.vue'
 
 import { comment } from 'postcss'
 
@@ -63,6 +64,11 @@ const routes = [
     path: '/success',
     name: 'success',
     component: Success
+  },
+  {
+    path: '/buildcv',
+    name: 'buildcv',
+    component: BuildCV
   },
 ]
 

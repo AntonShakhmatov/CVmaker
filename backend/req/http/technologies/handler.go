@@ -5,13 +5,14 @@ import (
 	"errors"
 )
 
-func InsertTechnologiesTable(form TechnologiesForm) (int64, error) {
+func InsertTechnologiesTable(experienceID int64, form TechnologiesForm) (int64, error) {
 	query := `
-		INSERT INTO technologies (technologies_name)
-		VALUES (?)
+		INSERT INTO technologies (experience_id, technologies_name)
+		VALUES (?,?)
 	`
 	res, err := db.DB.Exec(
 		query,
+		experienceID,
 		form.Name,
 	)
 	if err != nil {
